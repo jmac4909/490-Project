@@ -1,0 +1,14 @@
+Avengers endgame:
+  https://www.kaggle.com/kavita5/twitter-dataset-avengersendgame
+    Context
+    Sentiment Analysis |
+    Social Media Analytics
+
+    Content
+    10,000 records extracted from twitter for trending topic of - #AvengersEndgame :
+    which give an opportunity to explore skills of sentiment analysis, social media analytics & visualization.
+
+Trump:
+  https://www.thetrumparchive.com/faq
+  This site checks Twitter every 60 seconds and records every Trump tweet into a database.
+  Before the site launched in 2016, all available tweets were captured and added to the database for perpituity.
