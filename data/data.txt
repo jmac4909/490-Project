@@ -23,3 +23,6 @@ Russian Troll:
   reconstruct a dataset consisting of a subset of the deleted data for their investigation and were able to show how these troll
   accounts went on attack during key election moments. This dataset is the body of this open-sourced reconstruction.
   For more background, read the NBC news article publicizing the release: "Twitter deleted 200,000 Russian troll tweets. Read them here."
+
+Tweets Dataset - Top 20 most followed users in Twitter social platform
+https://dataverse.harvard.edu/dataset.xhtml?id=3047332
