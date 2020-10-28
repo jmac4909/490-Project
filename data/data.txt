@@ -12,3 +12,14 @@ Trump:
   https://www.thetrumparchive.com/faq
   This site checks Twitter every 60 seconds and records every Trump tweet into a database.
   Before the site launched in 2016, all available tweets were captured and added to the database for perpituity.
+
+
+Russian Troll:
+  https://www.kaggle.com/vikasg/russian-troll-tweets
+  As part of the House Intelligence Committee investigation into how Russia may have influenced the 2016 US Election,
+  Twitter released the screen names of almost 3000 Twitter accounts believed to be connected to Russia’s Internet Research Agency,
+  a company known for operating social media troll accounts. Twitter immediately suspended these accounts,
+  deleting their data from Twitter.com and the Twitter API. A team at NBC News including Ben Popken and EJ Fox was able to
+  reconstruct a dataset consisting of a subset of the deleted data for their investigation and were able to show how these troll
+  accounts went on attack during key election moments. This dataset is the body of this open-sourced reconstruction.
+  For more background, read the NBC news article publicizing the release: "Twitter deleted 200,000 Russian troll tweets. Read them here."
