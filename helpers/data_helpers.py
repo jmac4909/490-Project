@@ -15,7 +15,7 @@ def parse_raw_data_csv(csv_string):
         return [pd.read_csv('data/raw/russian_troll/tweets.csv'),
                 pd.read_csv('data/raw/russian_troll/users.csv')]
     elif csv_string.find('avengers') > -1:
-        return [pd.read_csv('data/raw/avengers_endgame/tweets.csv')]
+        return [pd.read_csv('data/raw/avengers_endgame/tweets.csv', encoding='cp1252')]
     elif csv_string.find('trump') > -1:
         return [pd.read_csv(
             'data/raw/donald_trump_tweets/trump_tweets_10-24-2020.csv')]
