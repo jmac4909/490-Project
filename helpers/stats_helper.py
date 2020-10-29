@@ -1,13 +1,20 @@
-def create_word_occurence_like_dict(list_of_tweets): #list of tweets is a list of tweet tuples (content, # of likes)
-    "Given a list of tweets in the format (content, likes), returns a dict with the total occurences and total number of likes for each word"
+import pandas as pd
+import numpy as np
+from helpers.data_helpers import *
+
+def create_word_occurence_like_dict(df_of_tweets): #list of tweets is a list of tweet tuples (content, # of likes)
+    "Given a list of tweets where the second element is a dataframe, returns a dict with the total occurences and total number of likes for each word"
     wordDict = {} #each key is a word that corresponds to (number of occurences of word, number of likes total in tweets containing word)
-    for tweet in list_of_tweets:
-        for word in tweet[0].split(): #tweet[0] is actual content of tweet as string
-            if word in wordDict:
-                wordDict[word][0] = wordDict[word][0] + 1
-                wordDict[word][1] = wordDict[word][1] + tweet[1]
-            else:
-                wordDict[word] = [1, tweet[1]]
+    for index, tweet in df_of_tweets[0].iterrows():
+        text = tweet[0].lower()
+        like_count = tweet[1]
+        if not np.isnan(like_count):
+            for word in text.split():
+                if word in wordDict:
+                    wordDict[word][0] = wordDict[word][0] + 1
+                    wordDict[word][1] = wordDict[word][1] + like_count
+                else:
+                    wordDict[word] = [1, like_count]
     return wordDict
 
 def calc_avg_likes(wordDict):
@@ -29,14 +36,16 @@ def predict_likes(tweet_text, avg_like_dict):
             words_used = words_used + 1
     return total_likes / words_used #return the avg likes of a word averaged over all the words in the tweet
 
-wordDict = create_word_occurence_like_dict( [("gee i hope this works work g this", 9), ("this is a really bad tweet", 2), ("no tweets are really bad, some just dont find their audience", 12), ("this tweet uses some words that are not bad but work", 7) ])
+parsed_df = get_simple_parsed_dataframe("trump")
+
+wordDict = create_word_occurence_like_dict(parsed_df)
 
 avg_like_dict = calc_avg_likes(wordDict)
 
 tweet = "this is going to be a really bad bad bad ending"
 
 print("\nexamples/tests")
-print("\nwordDict: ", wordDict)
+#print("\nwordDict: ", wordDict)
 print("\navg_like_dict: ", avg_like_dict)
-print("\npredicted likes in tweet ", tweet, predict_likes(tweet, avg_like_dict))
+print("\npredicted likes in tweet: ", tweet, predict_likes(tweet, avg_like_dict))
 
