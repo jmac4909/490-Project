@@ -23,13 +23,13 @@ def create_word_occurrence_like_dict(df_of_tweets, start,
         if start <= index <= end:
             text = tweet[0].lower()
             like_count = tweet[1]
-            if not np.isnan(like_count):
-                for word in text.split():
-                    if word in word_dict:
-                        word_dict[word][0] = word_dict[word][0] + 1
-                        word_dict[word][1] = word_dict[word][1] + like_count
-                    else:
-                        word_dict[word] = [1, like_count]
+            if not text.startswith('rt') and not np.isnan(like_count):
+                    for word in text.split():
+                        if word in word_dict:
+                            word_dict[word][0] = word_dict[word][0] + 1
+                            word_dict[word][1] = word_dict[word][1] + like_count
+                        else:
+                            word_dict[word] = [1, like_count]
     return word_dict
 
 
@@ -90,7 +90,7 @@ def predict_and_compare_likes(df_of_tweets, avg_like_dict, start, end):
         if start <= index <= end:
             text = tweet[0].lower()
             like_count = tweet[1]
-            if not np.isnan(like_count):
+            if not np.isnan(like_count) and not text.startswith("rt "):
                 predicted = predict_likes(text, avg_like_dict)
                 text_predicted_actual.append([text, predicted, like_count])
     return text_predicted_actual
