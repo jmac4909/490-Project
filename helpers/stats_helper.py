@@ -78,7 +78,11 @@ def predict_likes(tweet_text, avg_like_dict):
 
 def predict_and_compare_likes(df_of_tweets, avg_like_dict, start, end):
     """
-    ...
+    Given a Dataframe of tweets and likes, the average like dictionary, 
+    and indicies to start and end predicting, predicts the number of likes 
+    a tweet will receive. Returns a list of tuples containing the text,
+    predicted number of likes and actual number of likes. 
+    
     :param df_of_tweets:
     :param avg_like_dict:
     :param start:
@@ -94,3 +98,6 @@ def predict_and_compare_likes(df_of_tweets, avg_like_dict, start, end):
                 predicted = predict_likes(text, avg_like_dict)
                 text_predicted_actual.append([text, predicted, like_count])
     return text_predicted_actual
+
+
+
