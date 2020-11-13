@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import re
+import string
 import sys
 from helpers.data_helpers import *
 
@@ -22,13 +24,14 @@ def create_word_occurrence_like_dict(df_of_tweets, start,
     for index, tweet in df_of_tweets[0].iterrows():
         if start <= index <= end:
             text = tweet[0].lower()
+            text = re.sub('['+string.punctuation+']', '', text)
             like_count = tweet[1]
             if not text.startswith('rt') and not np.isnan(like_count):
                     for word in text.split():
                         if word in word_dict:
                             word_dict[word][0] = word_dict[word][0] + 1
                             word_dict[word][1] = word_dict[word][1] + like_count
-                        else:
+                        elif not ('http' in word or word.startswith('<u')):
                             word_dict[word] = [1, like_count]
     return word_dict
 
