@@ -51,7 +51,7 @@ def calc_avg_likes(word_dict):
     avg_like_dict = {}
     for word in word_dict:
         avg_likes = word_dict[word][1] / word_dict[word][
-            0]  # calculate avg likes by dividing total likes / occurrences
+            0]**5  # calculate avg likes by dividing total likes / occurrences
         avg_like_dict[word] = avg_likes
     return avg_like_dict
 
@@ -70,13 +70,14 @@ def predict_likes(tweet_text, avg_like_dict):
     total_likes = 0
     words_used = 0
     for word in tweet_as_list:
+        word = re.sub('[' + string.punctuation + ']', '', word)
         if word in avg_like_dict:
             total_likes = total_likes + avg_like_dict[
                 word]  # sum the avg likes of all the words
             words_used = words_used + 1
     if words_used == 0:
         return 0
-    return total_likes / words_used
+    return total_likes / words_used**5.4
 
 
 def predict_and_compare_likes(df_of_tweets, avg_like_dict, start, end):
@@ -111,7 +112,7 @@ def is_accurate(predicted, actual):
     :return:
     """
     diff = abs(predicted - actual)
-    if diff < (0.3 * actual):
+    if diff < (1 * actual):
         return True
 
 def get_percent_in_range(text_predicted_actual):
