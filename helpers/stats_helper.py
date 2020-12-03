@@ -102,5 +102,33 @@ def predict_and_compare_likes(df_of_tweets, avg_like_dict, start, end):
                 text_predicted_actual.append([text, predicted, like_count])
     return text_predicted_actual
 
+def is_accurate(predicted, actual):
+    """
+    Given the predicted number of likes and actual number of likes, computes whether the prediction is within some range of the actual value
+    
+    :param predicted:
+    :param actual:
+    :return:
+    """
+    diff = abs(predicted - actual)
+    if diff < (0.3 * actual):
+        return True
+
+def get_percent_in_range(text_predicted_actual):
+    """
+    Given the entire dataset, computes the percent of predictions within range
+    
+    :param text_predicted_actual:
+    :return:
+    """
+    total_acc = 0.0
+    for tweet in text_predicted_actual:
+        predicted = tweet[1]
+        actual = tweet[2]
+        tweet_acc = is_accurate(predicted, actual)
+        if tweet_acc:
+            total_acc = total_acc + 1
+    return total_acc / len(text_predicted_actual) * 100
+
 
 
